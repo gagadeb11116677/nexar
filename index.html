@@ -148,7 +148,7 @@
       return;
     }
     const fancyName = toFancy(name);
-    const output = 🩸 𝐍𝐞𝐱𝐚𝐫 ${fancyName} 🩸;
+    const output = `🩸 𝐍𝐞𝐱𝐚𝐫 ${fancyName} 🩸`;
     document.getElementById("result").innerText = output;
     document.getElementById("copyBtn").style.display = 'inline-block';
   }
@@ -161,6 +161,13 @@
       setTimeout(() => btn.innerText = "Copy", 1500);
     });
   }
+  
+  // Allow Enter key to generate
+  document.getElementById("nameInput").addEventListener("keypress", function(event) {
+    if (event.key === "Enter") {
+      generate();
+    }
+  });
 </script>
 
 </body>
