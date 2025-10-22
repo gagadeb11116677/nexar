@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nexar Generator</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
+
+  body {
+    background: radial-gradient(circle at top, #111 0%, #000 100%);
+    color: #fff;
+    font-family: 'Poppins', sans-serif;
+    text-align: center;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  h1 {
+    font-size: 2rem;
+    color: #ff4b4b;
+    margin-bottom: 10px;
+  }
+
+  p {
+    color: #bbb;
+    font-size: 0.95rem;
+    margin-bottom: 20px;
+  }
+
+  .generator-box {
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 15px;
+    padding: 25px 30px;
+    width: 90%;
+    max-width: 400px;
+    box-shadow: 0 0 20px rgba(255,0,0,0.1);
+  }
+
+  input {
+    padding: 12px 15px;
+    font-size: 1rem;
+    border-radius: 10px;
+    border: none;
+    outline: none;
+    width: 100%;
+    margin-bottom: 15px;
+    text-align: center;
+    background: #1a1a1a;
+    color: #fff;
+  }
+
+  button {
+    background-color: #ff4b4b;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    padding: 10px 20px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.3s;
+  }
+
+  button:hover {
+    background-color: #ff6b6b;
+  }
+
+  .output {
+    margin-top: 25px;
+    font-size: 1.6rem;
+    color: #ff4b4b;
+    min-height: 40px;
+    word-wrap: break-word;
+  }
+
+  .copy-btn {
+    margin-top: 10px;
+    background: #222;
+    color: #ff4b4b;
+    border: 1px solid #ff4b4b;
+    padding: 8px 15px;
+    border-radius: 8px;
+    font-size: 0.9rem;
+    cursor: pointer;
+    display: none;
+  }
+
+  .copy-btn:hover {
+    background: #ff4b4b;
+    color: #fff;
+  }
+
+  footer {
+    margin-top: 40px;
+    font-size: 0.85rem;
+    color: #888;
+  }
+
+  footer a {
+    color: #ff4b4b;
+    text-decoration: none;
+    font-weight: 600;
+  }
+
+  footer a:hover {
+    text-decoration: underline;
+  }
+
+</style>
+</head>
+<body>
+
+  <h1>🩸 Nexar Generator 🩸</h1>
+  <p>Buat nama kamu dengan gaya khas Marga Nexar</p>
+
+  <div class="generator-box">
+    <input type="text" id="nameInput" placeholder="Ketik nama kamu..." maxlength="20">
+    <button onclick="generate()">Generate</button>
+
+    <div class="output" id="result"></div>
+    <button class="copy-btn" id="copyBtn" onclick="copyText()">Copy</button>
+  </div>
+
+  <footer>
+    Dibuat oleh <span style="color:#ff4b4b;font-weight:600;">Marga Nexar</span> — 
+    <a href="https://t.me/MargaNexar" target="_blank">Join di sini</a>
+  </footer>
+
+<script>
+  const fancyMap = {
+    A:'𝐀',B:'𝐁',C:'𝐂',D:'𝐃',E:'𝐄',F:'𝐅',G:'𝐆',H:'𝐇',I:'𝐈',J:'𝐉',K:'𝐊',L:'𝐋',M:'𝐌',N:'𝐍',O:'𝐎',P:'𝐏',Q:'𝐐',R:'𝐑',S:'𝐒',T:'𝐓',U:'𝐔',V:'𝐕',W:'𝐖',X:'𝐗',Y:'𝐘',Z:'𝐙',
+    a:'𝐚',b:'𝐛',c:'𝐜',d:'𝐝',e:'𝐞',f:'𝐟',g:'𝐠',h:'𝐡',i:'𝐢',j:'𝐣',k:'𝐤',l:'𝐥',m:'𝐦',n:'𝐧',o:'𝐨',p:'𝐩',q:'𝐪',r:'𝐫',s:'𝐬',t:'𝐭',u:'𝐮',v:'𝐯',w:'𝐰',x:'𝐱',y:'𝐲',z:'𝐳'
+  };
+
+  function toFancy(text) {
+    return text.split('').map(c => fancyMap[c] || c).join('');
+  }
+
+  function generate() {
+    const name = document.getElementById("nameInput").value.trim();
+    if (!name) {
+      document.getElementById("result").innerText = '';
+      document.getElementById("copyBtn").style.display = 'none';
+      return;
+    }
+    const fancyName = toFancy(name);
+    const output = 🩸 𝐍𝐞𝐱𝐚𝐫 ${fancyName} 🩸;
+    document.getElementById("result").innerText = output;
+    document.getElementById("copyBtn").style.display = 'inline-block';
+  }
+
+  function copyText() {
+    const text = document.getElementById("result").innerText;
+    navigator.clipboard.writeText(text).then(() => {
+      const btn = document.getElementById("copyBtn");
+      btn.innerText = "✅ Copied!";
+      setTimeout(() => btn.innerText = "Copy", 1500);
+    });
+  }
+</script>
+
+</body>
+</html>
